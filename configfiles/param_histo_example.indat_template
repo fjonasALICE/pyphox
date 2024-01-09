@@ -1,0 +1,140 @@
+# values of the cuts acting when the histograms are filled
+########################################################################
+# cut in P_t on the photon 
+#
+0.0
+########################################################################
+# maximum value of the rapidity of the photons
+#
+0.8
+########################################################################
+# minimum value of the rapidity of the photons
+#
+-0.8
+########################################################################
+# choice of jet algorithm: "kt": Durham kt, "co": cone, "se": with seeds
+#
+kt
+########################################################################
+# choix de r_kt
+#
+0.3
+########################################################################
+# choix de r_c
+#
+0.7
+########################################################################
+# choix de r_sep
+#
+1.4
+########################################################################
+# choice of the merging algorithm: "sn": snow-mass "ho":houches99
+#
+sn
+########################################################################
+# Acceptance of the jet: 
+# an event is accepted if:
+#"gp": the highest pt jet verifies the cut in rapidity and transverse 
+# momentum
+#"up":one of the jets verifies the cut in rapidity and transverse 
+# momentum
+#
+gp
+########################################################################
+#     ptjet_max
+#
+1000.
+########################################################################
+#    ptjet_min
+#
+2.
+########################################################################
+#     yjet_max
+#
+5.8
+########################################################################
+#     yjet_min
+#
+-5.8
+########################################################################
+# Choice to plot azimuthal angle in radian ("rad") or degrees ("degree")
+#
+rad
+########################################################################
+# To draw histograms, the user can select some variables which are:
+#   pt_gamma		transverse momentum of the photon
+#   y_gamma		rapidity of the photon
+#   pt_jet_leading	transverse momentum of the leading jet
+#   y_jet_leading	rapidity of the leading jet
+#   pt_pair_gamma_jet	transverse momentum of the pair gamma-leading jet
+#   phi_gamma_jet	azymuthal angle between the photon and the leading jet
+#
+# The histograms with equidistant bins must begin by the key word 
+# "histo_equi" then followed by six fields sperated by a blank:
+# - the variable chosen among the preceeding lists
+# - "nlo" or "lo" to fill the histogram with next-to-leading order or leading 
+#   order calculation
+# - some extra cuts specific to this histogram enclosed with square brakets 
+#   ['lower_value',variable,'upper_value',....]
+#   or for an exclusion
+#   ]'lower_value',variable,'upper_value',....[
+#   (if nothing is specified in these brackets, no cuts are applied)
+# - the title
+# - the number of bins
+# - the minimal value of abscissa
+# - the maximal value of the abscissa
+#
+# The histograms with non equidistant bins must begin by the key word
+# "histo_nonequi"
+# then followed by five fields sperated by a blank:
+# - the variable chosen among the preceeding lists
+# - "nlo" or "lo" to fill the histogram with next-to-leading order or leading 
+#   order calculation
+# - some extra cuts specific to this histogram enclosed with square brakets 
+#   ['lower_value',variable,'upper_value',....]
+#   or for an exclusion
+#   ]'lower_value',variable,'upper_value',....[
+#   (if nothing is specified in these brackets, no cuts are applied)
+# - the title
+# - the number of bins
+# - a vector containing the value of the low edge of each bins and the 
+#   upper edge of the last bin.
+# For example the following line
+# histo_equi pt_gamma lo [] dsigma_lo/dpt 8 80. 1100.
+# will create a histogram in the transverse momentum of the photon of 8
+# equidistant bins between 80. and 1100. and will fill it with L.O. result 
+# and no extra cuts,
+# the following line
+# histo_nonequi phi_gamma_jet nlo ['4.',pt_pair,'5.'] dsigma/dfi 4 1.90 2.10 2.70 3.00 3.14
+# will create a histogram in the azymuthal angle between the photon and 
+# the jet of 4 non equidistant bins:
+# - first bin:		1.90 2.10
+# - second bin:		2.10 2.70
+# - third bin:		2.70 3.00
+# - fourth bin:		3.00 3.14
+# and will fill it with N.L.O. result and with an extra cut 4.<= pt_pair <= 5.
+# histo_nonequi phi_gamma_jet nlo ]'4.',pt_pair,'5.'[ dsigma/dfi 4 1.90 2.10 2.70 3.00 3.14
+# will create a histogram in the azymuthal angle between the photon and 
+# the jet of 4 non equidistant bins:
+# and will fill it with N.L.O. result and with an extra cut excluding the region  4.<= pt_pair <= 5.
+#
+# The scatterplots with equidistant bins must begin by the key word 
+# "scatter_equi" then followed by six fields sperated by a blank:
+# - the variables chosen in preceeding lists for x and y 
+# - "nlo" or "lo" to fill the histogram with next-to-leading order or leading 
+#   order calculation
+# - some extra cuts specific to this scatter plot enclosed with square brakets 
+#   ['lower_value',variable,'upper_value',....]
+#   (if nothing is specified in these brackets, no cuts are applied)
+# - the title
+# - the number of bins for x variable
+# - the minimal value of abscissa for x variable
+# - the maximal value of the abscissa for x variable
+# - the number of bins for y variable
+# - the minimal value of abscissa for y variable
+# - the maximal value of the abscissa for y variable
+########################################################################
+histo_equi pt_gamma nlo ['MINRAP',y_gamma,'MAXRAP'] d#sigma^{#gamma}_{PROCESSSTRING,ORDERSTRING}/dp_{T}^{#gamma}(MINRAP<y<MAXRAP) 1000 0. 250.
+histo_equi y_gamma nlo [] d#sigma^{#gamma}_{PROCESSSTRING,ORDERSTRING}/dy^{#gamma} 200 -10. 10.
+histo_nonequi pt_gamma lo ['MINRAP',y_gamma,'MAXRAP'] dsigmalo/dptgamma 13 6. 8. 10. 12. 14. 16. 18. 20. 25. 30. 40. 60. 80. 100 
+histo_nonequi pt_gamma nlo ['MINRAP',y_gamma,'MAXRAP'] dsigmanlo/dptgamma 13 6. 8. 10. 12. 14. 16. 18. 20. 25. 30. 40. 60. 80. 100

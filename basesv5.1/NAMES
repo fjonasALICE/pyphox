@@ -1,0 +1,23 @@
+*-----------------------------------------------------------------------
+*      LIST of SUBROUTINE/FUNCTION name in BASES/SPRING 5.1
+*-----------------------------------------------------------------------
+*--*--------*---------*---------*---------*---------*---------*---------
+   
+  bases     bhinit    bhplot    bhrset    bhsave    bschck    bsdate
+  bsdims    bsetgu    bsetgv    bsgetw(+) bsgrid    bshbok(*) bsinfo
+  bsinit    bsintg    bslist    bsordr    bsparm    bsprnt    bsputw(+)
+  bsread    bstcnv    bstime    bsutim    bswrit    dhfill    dhinit
+  dhplot    drn       drnset    shcler    shfill    shinit    shplot
+  shrset    shupdt    spchck    sphbok(*) sphist    spinfo    sprgen
+  spring    uxdate_(-)uxtime_(-)xhchck    xhfill    xhinit    xhordr
+  xhplot    xhrnge    xhscle
+*-----------------------------------------------------------------------
+*      LIST of COMMON BLOCK name in BASES/SPRING 5.1
+*-----------------------------------------------------------------------
+*--*--------*---------*---------*---------*---------*---------*---------
+   base0    base1     base2     base3     base4     base5     base6
+   bdate    bparm1    bparm2    bscntl    bsrslt    btime1    btime2
+   bwarn1   bwarn2    ninfo     plotb     ploth     plotlu    plotsp
+   randm    slate(*)  sprng1    sprng2    xhcntl
+*--*--------*---------*---------*---------*---------*---------*---------
+   (*) for CERNLIB, (+) for GRACE, (-) Machine dependent routine.

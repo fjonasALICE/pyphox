@@ -1,0 +1,491 @@
+#########################################################################
+#
+#
+#                  NAMES AND PATHS FOR OUTPUT FILES
+#
+#
+#########################################################################
+# Name of the run: string which serves to form : 
+# 1) the names of the input parameter files,
+# 2) the names of the executable files ,
+# 3) the path to save the .bs files from the working directory into
+#    the following directories which will be created if they do not 
+#    exist:
+#    result.string/onef.string
+#    result.string/onef.string
+#    result.string/twof.string
+# Note that only alpha-numeric characters are allowed, namely
+# letters, numbers or _
+#
+NAMEINPUTPARAMETERFILE
+#########################################################################
+# Name for the histo: string which serves to form
+# the names of the histograms or of the ntuple.
+NAMEEXECUTABLEFILE
+#########################################################################
+# String to form the path where the ntuple or the histograms will be put
+#
+../NAMEHISTODIR
+#########################################################################
+# Please select the format of the output: "histo" will give directly 
+# histograms, "ntuple" will produce a ntuple. Here also the Makefile is 
+# modified in order to load only the necessary files
+#
+histo
+#########################################################################
+#
+#
+#                         INPUT
+#
+#
+#########################################################################
+# Type of initial hadron H1:0 proton, 1 anti-proton, aaazzz nucleus, 2 second pdf (see below)
+TYPEHADRONBEAM1
+#########################################################################
+# Type of initial hadron H2:0 proton, 1 anti-proton, aaazzz nucleus, 2 second pdf (see below)
+#
+TYPEHADRONBEAM2
+#########################################################################
+#                         PDF
+#
+# The program uses the LHAglue interface for LHAPDF. Please consult
+# http://projects.hepforge.org/lhapdf/manual
+# to get the LHAGLUE code which labels your pdf's set
+#
+#########################################################################
+# LHAPDF library path (obtained with the "lhapdf-config --prefix" command)
+/software/flo/alice/sw/ubuntu1804_x86-64/lhapdf/v6.2.1-alice2-local2
+#########################################################################
+# select a PDF set using the explicit name
+# For lhapdf 5.x put the extension .LHgrid, 
+# for lhapdf 6.x put only the name 
+#
+#lhapdf5.xxx      cteq66.LHgrid
+#lhapdf6.xxx      cteq66
+LHAPDFNAME1
+#########################################################################
+# second pdf possible, see hadron type above
+LHAPDFNAME2
+#########################################################################
+# select the member set of the first pdf, for central value choose 0
+PDFMEMBER1
+#########################################################################
+# select the member set of the second pdf, for central value choose 0
+PDFMEMBER2
+#########################################################################
+# call all PDF error sets (TRUE or FALSE)
+# if this flag is set to true, the preceding flag has no effect
+FALSE
+#########################################################################
+# Choice of the nPDF set (for nuclear targets) - must be set to 0 for protons/antiprotons
+# 0 no nuclear effects in the PDF
+# 1 nDS
+# 2 nDSg
+# 3 EKS98
+# 4 EPS08
+# 5 HKN04
+# 601-6031 EPS09
+# 7 HKN07
+# 8 FGS10 (set I)
+# 9 FGS10 (set II)
+# Hendrik: always 0 in this modified version
+# -> use directly LHAPDFNAME1 and LHAPDFNAME2
+0
+################################################################
+#                     FRAGMENTATION FUNCTION
+#########################################################################
+# Type of fragmentation functions for hadron/photon 3
+#
+# conventions: 4 digit number, xxyy
+# 
+# xx = group label:
+#
+# photons
+# 	01: BFG small gluon
+#	  02: BFG large gluon
+# hadrons
+# 	01:  AKK08
+#	  02:  DSS
+#	  03:  HKNS
+#	  04:  AKK05
+#	  05:  BKK
+#	  06:  KKP
+#	  07:  Kretzer 
+#	  08:  BFGW best fit
+#	  09:  BFGW large Ng
+#	  10: BFGW low Ng
+#       11: KKKS08 (into heavy-quark hadrons)
+#
+# yy = hadron label:             
+#
+#	 00  : photon
+#	 10 : (pi^+ + pi^-)/2
+#	 11 : pi^+ + pi^-
+#	 12 : pi^0
+#	 13 : pi^+
+#	 14 : pi^-
+#	 20 : (K^+ + K^-)/2
+#	 21 : K^+ + K^-
+#  22 : (K^0 + K^0bar)/2
+#  23 : K^0 + K^0bar
+#  24 : K^+
+#  25 : K^-
+#  30 : (p + pbar)/2
+#  31 : p + pbar
+#  32 : p
+#  33 : pbar
+#  40 : (h^+ + h^-)/2
+#  41 : h^+ + h^-
+#  42 : h^+
+#  43 : h^-
+#  50 : (Lambda + Lambdabar)/2
+#  51 : Lambda + Lambdabar
+#  90 : D*
+#  91 : D0
+#  92 : D+
+#
+# For example:     
+# photons BFG set II : 0200
+0200
+#########################################################################
+#                         SCALES
+#########################################################################
+# Choice of the scale:
+#       1 (pt3+pt4)*cm, 
+#       2 sqrt(pt3^2+pt4^2)*cm, 
+#       3 mgg*cm,
+#       4 cm*pt_photon
+#       5 cm*pt_photon*sqrt((1+exp(-2*abs(y*)))/2)
+# pt3 and pt4 are the transverse momentum of the two photons, mgg is 
+# the invariant mass of them, y* = (y_photon-y_jet)/2
+#
+4
+#########################################################################
+# Value of cm for initial state factorisation scale
+#
+ISSCALE
+#########################################################################
+# Value of cm for renormalisation scale
+#
+RENORMSCALE
+#########################################################################
+# Value of cm for final state factorisation scale
+#
+FSSCALE
+#########################################################################
+#                         COUPLING, ETC...
+#########################################################################
+# Number of loops in alpha_em:0 constant else running (routine taken from 
+# jetset)
+#
+0
+#########################################################################
+# alpha_s is obtained from:
+# 0 : LHAPDF
+# 1 : Numerical inversion of the solution of the 1-loop R.G equation
+# 2 : Numerical inversion of the solution of the 2-loop R.G equation
+# becareful that if you use 1 or 2 that the pdf set selected give a value for Lambda_QCD_4_flavour
+#
+0
+#########################################################################
+# Number of active flavours
+#
+5
+#########################################################################
+# Value of (hbar*c)^2 in GeV^2 pb to get cross sections in pb
+#
+.38935D+9
+#########################################################################
+# For the direct part:0 born only,1 box only, 2 born+box
+#
+DIRECTCALCULATION
+#########################################################################
+# Value of PTM in GeV
+# Typically PTM must be of the order of 0.5 % of the PT minimum of the
+# final photon/hadron 
+# for LHC, with PT of the photons/hadrons > 25 GeV, PTM = 0.1 GeV works
+# for Tevatron, with PT of the photons/hadrons > 12 GeV, PTM = 0.05 GeV 
+# works
+#
+0.05D0
+#########################################################################
+# Value of R_th
+# R_th = 0.1 or less
+#
+0.1D0
+#########################################################################
+# Please choose which contribution of the program you want to run:
+# dir		direct contribution
+# onef		one fragmentation contribution
+# the items must be separated by a comma!!!!
+# for example: dir,onef will run the two contributions
+#
+PROCESSSWITCH
+#########################################################################
+# If TRUE the Higher Order corrections are calculated
+# else if FALSE no H.O. corrections are computed
+# the number of values here must match the number of contributions 
+# already selected
+# for example if dir,onef has been selected and one wants to compute
+# all these three contributions at NLO, you must put here
+# TRUE,TRUE if you put only one TRUE the program assumes that you
+# want to compute all the contribution at HO
+#
+HIGHERORDERSWITCH
+#########################################################################
+# If TRUE the Leading Order terms are calculated
+# else if FALSE no L.O. terms are computed
+# the number of values here not necessarily match the number of contributions 
+# already selected
+#
+TRUE
+#########################################################################
+# Set to TRUE if you want to compute the physical integrated cross section 
+# (for example to  test the PTM or R_th dependence)
+# here one assumes that the user wants to use the same option for all
+# contributions
+#
+FALSE
+#########################################################################
+# Set to TRUE if you want to compute differential cross sections through a 
+# NTUPLE or HISTOGRAMS. It is used to make the grid. In this case, the 
+# program integrates the absolute value of differential cross sections. 
+# Note that this flag acts only on the creation of .bs files (creation 
+# of the grids).
+# Here one assumes that the user wants to use the same option for all
+# contributions
+#
+TRUE
+#########################################################################
+# If true only generation. This flag acts only on the generation of 
+# events just by reading the already created .bs files
+# here one assumes that the user wants to use the same option for all
+# contributions
+#
+TRUE
+#########################################################################
+#
+#
+#                         KINEMATICS
+#
+#
+#########################################################################
+#0 collider mode, 1 fixed target mode
+#
+0
+#########################################################################
+# Value of ebeam or sqrt(s) depending on the preceeding flag
+#
+CMSENERGY
+#########################################################################
+# Value of the maximal rapidity for the photon
+#
+MAXRAP
+#########################################################################
+# Value of the minimal rapidity for the photon
+#
+MINRAP
+#########################################################################
+#Value of ptmax in GeV for the photon
+#
+PTMAXGEN
+#########################################################################
+# Value of ptmin in GeV for the photon
+#
+PTMINGEN
+#########################################################################
+#PARAMETERS FOR ISOLATION
+#########################################################################
+# flag to choose different maximum transverse energy cut deposited in the isolation cone
+# 	1 value in GeV 
+#   2 Fraction of photon transverse momentum
+#   3 crown with value in GeV (do not put more than 10 values)
+#   4 nested cone with value in GeV (do not put more than 10 values) computed from the formula
+#      etmax(r) = epsilon*pt*( (1-cos(r))/(1-cos(r_max)) )^(n)
+#      for this case enter, instead of etmax, the parameters epsilon and n
+#   5 ATLAS criterion : et_deposited < A*pt+B in a cone of size R
+# if there is no isolation criterion, choose 1 and put the maximum Et allowed : sqrt(s)/2
+1
+#########################################################################
+# Depending on the flag: 
+#   1 Radius of isolation cone (one value) 
+#   2 Radius of isolation cone(one value)
+#   3 Radius of each crown (not more that 10 values)
+#   4 Radius of each nested cone (not more that 10 values)
+#   5 Radius of isolation cone (one value)
+#
+# if several values are required, put them as a list separated with a comma
+# ex : 0.3D0,0.35D0,0.3D0,0.25D0,0.2D0,0.15D0,0.1D0
+#
+ISOCONERADIUS
+#########################################################################
+# Depending on the flag: 
+#   1 value of Etmax (in GeV) (one value) 
+#   2 fraction of the photon transverse momentum (one value)
+#   3 value in GeV in each crown (not more that 10 values)
+#   4 value in GeV in each nested cone (not more that 10 values)
+#   5 value of the parameters A and B (two values)
+#
+# if several values are required, put them as a list separated with a comma
+# ex : 3D0,2.92D0,2.83D0,2.73D0,2.61D0,2.47D0,2.28D0 
+#
+ISOENERGY
+#########################################################################
+#PARAMETERS FOR JETS
+#########################################################################
+# flag to choose inclusive mode or photon+jet; inclusive: 0, jets: 1
+# BEWARE: from version 1.3.1.3 to 1.3.1.4 the developers silently removed
+# this option, the line has to stay blank!
+
+##########################################################################
+# choice of jet algorithm: "kt": Durham kt, "co": cone, "se": with seeds
+# or "d0": midpoint algorithm (to be used with "ho" merging rules)
+kt
+##########################################################################
+# value of r_kt
+0.4D0
+##########################################################################
+# value of r_cone
+0.7D0
+##########################################################################
+# value of r_sep
+1.4D0
+########################################################################
+# choice of the merging rules: "sn": snow-mass, "ho": houches99
+#
+sn
+########################################################################
+# Acceptance of the jet: 
+# an event is accepted if:
+#"gp": the highest pt jet verifies the cut in rapidity and transverse 
+# momentum
+#"up":one of the jets verifies the cut in rapidity and transverse 
+# momentum
+#
+gp
+##########################################################################
+# value of ptjet_max
+1000.D0
+##########################################################################
+# value of ptjet_min
+1.0D1
+##########################################################################
+# value of yjet_max
+JETRAPMAX
+##########################################################################
+# value of yjet_min
+JETRAPMIN
+#########################################################################
+#
+#
+#                         BASES/SPRING
+#
+#
+#########################################################################
+# For all the following items except for the number of tries for SPRING, 
+# the user can choose different numbers for the different contributions. 
+# If only one number is specified, the program takes this number for all 
+# the contributions
+#########################################################################
+# Number of generated events in the ntuple or histograms
+#
+#4000000 this amount worked in the trial
+NUMBEROFEVENTS
+#########################################################################
+# Seed for the generation only
+RANDOMSEED
+#########################################################################
+# Number of iteration for the grid step
+#
+20
+#########################################################################
+# Number of iteration for the integration step
+#
+10
+#########################################################################
+# Number of calls per iteration for two to three
+#
+5000000
+#########################################################################
+# Number of calls per iteration for quasi two to two
+#
+2500000
+#########################################################################
+# Number of calls per iteration for true two to two
+#
+1000000
+#########################################################################
+# Number of tries for spring
+# here one assumes that the user wants to use the same option for all
+# contributions
+#
+1000
+#########################################################################
+# Accuracy in per cent for Bases
+#
+0.03D0
+#########################################################################
+#
+#
+#                         TEST
+#
+#
+# This section is only for performing tests on specific sub-processes. Do  
+# not modify the default values below.
+#########################################################################
+# To select process in direct part:
+# In some routines, there is a loop over the number of partonic 
+# sub-processes. For the direct part, the loop runs from 1 to 2
+# the user can select one sub-process by changing the lower (upper) value
+# of the loop (for instance putting 1 1 for the two next values the user 
+# obtains results for qi + qbi only)
+#	qi + qk --> jet + ph
+#
+#	1 : d + u --> jet + ph
+#	2 : d + dp --> jet + ph
+#	3 : u + up --> jet + ph
+#
+#	qi + qbk --> jet + ph
+#
+#	4 : d + ub --> jet + ph
+#	5 : d + dpb --> jet + ph
+#	6 : u + upb --> jet + ph
+#
+#	7 : qi + qi --> jet + ph
+#
+#	qi + qbi --> jet + ph
+#	8 : d + db --> jet + ph
+#	9 : u + ub --> jet + ph
+#
+#	10 : qi + g --> jet + ph
+#
+#	11 : g + g --> jet + ph
+#########################################################################
+SUBPROCESSMIN
+SUBPROCESSMAX
+#########################################################################
+# To select process in one fragmentation part:
+# Here the loop over the partonic sub-processes runs from 1 to 18
+# D means a quark of charge -1/3 (Db anti quark D, Dp another quark of 
+# charge -1/3 different from D)
+# U means a quark of charge 2/3 (Ub anti quark U, Up another quark of 
+# charge 2/3 different from U)
+#	1 : qi + qk --> jet + qk
+#	2 : qi + qk --> jet + g
+#	3 : qi + qbk --> jet + qbk
+#	4 : qi + qbk --> jet + g
+#	5 : qi + qi --> jet + qi
+#	6 : qi + qi --> jet + g
+#	7 : qi + qbi --> jet + qbk
+#	8 : qi + qbi --> jet + qbi
+#	9 : qi + qbi --> jet + g
+#	10 : qi + g --> jet + qk
+#	11 : qi + g --> jet + qbk
+#	12 : qi + g --> jet + qbi
+#	13 : qi + g --> jet + g
+#	14 : qi + g --> jet + qi
+#	15 : g + g --> jet + qi
+#	16 : g + g --> jet + g
+#########################################################################
+1
+16

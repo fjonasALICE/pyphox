@@ -1,0 +1,32 @@
+---------------------- BASES/SPRING 5.1 --------------------------------
+2000/01/17:TI
+1. Y2K problem (bsdate.f)
+*----------------------------------------------------------------------
+1995/08/30:TI
+1.  xhplot.f (bug fixed:negative value for histogram)
+2.  shplot.f (bug fixed:negative value for histogram)
+*----------------------------------------------------------------------
+1995/08/26:TI
+1.  bsintg.f (bug fixed:negative value for warning message)
+*----------------------------------------------------------------------
+1995/08/12:TI
+1.  bsintg.f drn.f (minor correction for 'f2c').
+*----------------------------------------------------------------------
+1995/08/08:SK & TI
+Additional subroutines for GRACE systems.
+1. bshbok, sphbok.
+   conversion from BASES/SPRING histograms
+              to   HBOOK.
+
+   The relation of ID in BASES/SPRING to ID for HBOOK.
+
+   ID for HBOOK = ID in BASES/SPRING + (OFFSET)
+
+  ----------------------------------------
+                         BASES     SPRING
+   Histogram   (1-D)         0      20000
+   Scatter Plot(2-D)     10000      30000
+  ----------------------------------------
+2. bsgetw, bsputw
+   Weight
+------------------------------------------------------------------------

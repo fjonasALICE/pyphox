@@ -53,7 +53,7 @@ LHAPDFLIB	= $(shell lhapdf-config --libs)
 #
 #------------------------------------------------------------------------------
 
-ROOTCONFIG   := /software/flo/alice/sw/ubuntu2204_x86-64/ROOT/latest/bin/root-config
+ROOTCONFIG   := /opt/root/bin/root-config
 
 ARCH         := $(root-config --arch)
 PLATFORM     := $(root-config --platform)

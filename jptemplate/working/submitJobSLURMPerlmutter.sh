@@ -1,12 +1,15 @@
 #!/bin/bash
-#SBATCH -J jetphox_build
-#SBATCH --image=fjonas/jetphoxenv:latest
+#SBATCH -N 1
+#SBATCH -C cpu
+#SBATCH -q regular
+#SBATCH -J jetphox_run
+#SBATCH -t 12:00:00
 
 
 # get current working directory
 CURRENTDIR=`pwd`
 
-time $CURRENTDIR/$1
+srun -n 1 -c 256 --cpu_bind=cores $CURRENTDIR/$1
 
 # time ./$1
 # exit $?

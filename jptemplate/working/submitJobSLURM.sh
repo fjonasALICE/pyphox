@@ -8,8 +8,10 @@
 CURRENTDIR=`pwd`
 
 # load jetphoxenv docker and run exe
-docker run -it --rm -v /alf/data/flo/PyPhox/:/home/PyPhox jetphoxenv:latest $CURRENTDIR/$1
-
+# docker run -it --rm -v /alf/data/flo/PyPhox/:/home/PyPhox jetphoxenv:latest $CURRENTDIR/$1
+#singularity
+echo $CURRENTDIR
+singularity exec -B /alf/data/flo/PyPhox/:/home/PyPhox --pwd /home/PyPhox docker://fjonas/jetphoxenv:latest $CURRENTDIR/$1
 
 # time ./$1
 # exit $?

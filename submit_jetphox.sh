@@ -15,9 +15,9 @@ RUNOPTIONS="--prefix Test_${DATE} --pdf1 nNNPDF30_nlo_as_0118_A208_Z82 --pdfmemb
 
 
 # build all files needed (inside docker)
-sudo docker run -it --rm -v /alf/data/flo/PyPhox/:/home/PyPhox jetphoxenv:latest ./run_jetphox build $RUNOPTIONS
-# run instead with singularity (work in progress)
-# singularity exec -B /alf/data/flo/PyPhox/:/PyPhox docker://jetphoxenv:latest ./run_jetphox build $RUNOPTIONS
+# sudo docker run -it --rm -v /alf/data/flo/PyPhox/:/home/PyPhox jetphoxenv:latest ./run_jetphox build $RUNOPTIONS
+# run instead with singularity
+singularity exec -B /alf/data/flo/PyPhox/:/home/PyPhox --pwd /home/PyPhox docker://fjonas/jetphoxenv:latest /home/PyPhox/run_jetphox build $RUNOPTIONS
 
 # submit job to slurm (outside docker, since docker container does not know sbatch)
-./run_jetphox submit $RUNOPTIONS
+./run_jetphox submit $RUNOPTIONS --skipcopy true

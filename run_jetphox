@@ -30,7 +30,7 @@ if __name__ == "__main__":
     datestring = datetime.strftime(datetime.now(), '%Y_%m_%d')
     
     parser = argparse.ArgumentParser("run_jetphox", description="Steering script to build and start a new jetphox calculation")
-    parser.add_argument("command", metavar="COMMAND", type=str, help="Command to run build | submit | run" )
+    parser.add_argument("command", metavar="COMMAND", type=str, help="Command to run build | submit | submitperlmutter | run" )
     parser.add_argument("-p", "--prefix", metavar="PREFIX", type=str, default="Output_"+datestring, help="Prefix for output files")
     parser.add_argument("-i", "--pdf1", metavar="PDF1", type=str, default="CT14nlo", help="PDF set for beam 1")
     parser.add_argument("-k", "--pdfmember1", metavar="PDFMEMBER1", type=str, default="0", help="PDF member for beam 1")
@@ -230,6 +230,8 @@ if __name__ == "__main__":
             subprocess.run(['perl', 'start.pl'])
         elif args.command == "submit":
             subprocess.run(['sbatch', 'submitJobSLURM.sh', 'run'+name+'.exe'])
+        elif args.command == "submitperlmutter":
+            subprocess.run(['sbatch', 'submitJobSLURMPerlmutter.sh', 'run'+name+'.exe'])
         elif args.command == "run":
             subprocess.run(['bash', 'submitJobSLURM.sh', 'run'+name+'.exe'])
         os.chdir('../..')

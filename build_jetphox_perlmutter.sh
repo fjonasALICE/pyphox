@@ -1,5 +1,9 @@
 #!/bin/bash
+#SBATCH -N 1
+#SBATCH -C cpu
+#SBATCH -q regular
 #SBATCH -J jetphox_build
+#SBATCH -t 02:00:00
 #SBATCH --image=fjonas/jetphoxenv:latest
 
 DATE=`date +%Y_%m_%d`

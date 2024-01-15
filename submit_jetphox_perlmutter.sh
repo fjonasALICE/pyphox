@@ -5,12 +5,12 @@
 #SBATCH -J jetphox_build
 #SBATCH -t 02:00:00
 
-DATE=`date +%Y_%m_%d`
-RANDOMX=12345
-NEVENTS=5000000
-BORNBOX=2
-ISO=2
+RUNOPTIONS=""
+for var in "$@"
+do
+    RUNOPTIONS="$RUNOPTIONS $var"
+done
 
 
-srun -n 1 -c 1 --cpu_bind=cores /global/u1/f/fjonas/pyphox/run_jetphox submitperlmutter $1 --skipcopy true
+srun -n 1 -c 1 --cpu_bind=cores /global/u1/f/fjonas/pyphox/run_jetphox submitperlmutter $RUNOPTIONS
 

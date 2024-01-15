@@ -19,5 +19,5 @@ ISO=2
 # build all files needed (inside docker)
 # sudo docker run -it --rm -v /alf/data/flo/PyPhox/:/home/PyPhox jetphoxenv:latest ./run_jetphox build $RUNOPTIONS
 # run instead with singularity
-./run_jetphox build $1
+srun -n 1 -c 1 --cpu_bind=cores /global/u1/f/fjonas/pyphox/run_jetphox build $1
 

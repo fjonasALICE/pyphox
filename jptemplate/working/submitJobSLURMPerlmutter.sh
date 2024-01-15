@@ -9,7 +9,7 @@
 # get current working directory
 CURRENTDIR=`pwd`
 
-srun -n 1 -c 256 --cpu_bind=cores $CURRENTDIR/$1
+srun -n 1 -c 1 --cpu_bind=cores $CURRENTDIR/$1
 
 # time ./$1
 # exit $?

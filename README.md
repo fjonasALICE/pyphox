@@ -3,6 +3,8 @@ Code used for easy steering of JetPhox with python based on https://github.com/h
 I am not the author of JetPhox! Original sourcecode can be found here: https://lapth.cnrs.fr/PHOX_FAMILY/jetphox.html
 Please cite the authors, e.g. Phys.Rev. D73 (2006) 094007
 
+The code allows to perform calculations of the (isolated) prompt photon cross section, as well as gamma-jet correlations.
+
 # Usage
 ## Modifications of original source code
 While the source code of jetphox is taken from https://lapth.cnrs.fr/PHOX_FAMILY/jetphox.html version 1.4, several modifications have been made, many of which are taken from https://github.com/hpoppenb/BashPhox
@@ -23,6 +25,7 @@ docker run -it --rm -v /alf/data/flo/PyPhox/:/home/PyPhox fjonas/jetphoxenv:late
 ```
 A small selection of PDF sets can be found under /home/pdfsets
 
+If you want to build the docker image yourself or modify it to fit your needs, the corresponding dockerfile can be found in ./dockertestapp/Dockerfile
 # Running Jetphox
 To make steering of jetphox easier, I created the python script run_jetphox , which allows building and steering of the JetPhox code in multiple photon pt bins to improve statistics. The program is split into two parts, which handle compilation of the source code (which has to be done for each pt bin and each config file) and the running/submission of the created executable.
 

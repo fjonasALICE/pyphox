@@ -5,7 +5,7 @@
 #SBATCH -q shared
 #SBATCH -J jetphox_build
 #SBATCH -A alice
-#SBATCH -t 02:00:00
+#SBATCH -t 00:30:00
 #SBATCH --image=fjonas/jetphoxenv:latest
 
 

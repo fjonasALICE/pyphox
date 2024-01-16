@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 
 import argparse
 import os
@@ -20,7 +20,7 @@ def createpthardbins():
         os.makedirs('jp'+str(i), exist_ok=True)
         # copy all files (wildcard) from jptemplate folder to jp${i}
         print("Copying files from jptemplate to jp"+str(i))
-        shutil.copytree(basedir+'/jptemplate/', 'jp'+str(i)+'/', dirs_exist_ok=True)
+        subprocess.run(['cp', '-a', basedir+'/jptemplate/.', 'jp'+str(i)+'/'])
 
 
 

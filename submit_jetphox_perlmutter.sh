@@ -14,5 +14,5 @@ do
 done
 
 
-srun -n 1 -c 1 --cpu_bind=cores /global/u1/f/fjonas/pyphox/run_jetphox submitperlmutter $RUNOPTIONS
+time /global/u1/f/fjonas/pyphox/run_jetphox submitperlmutter $RUNOPTIONS
 

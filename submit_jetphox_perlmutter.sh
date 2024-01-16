@@ -5,6 +5,7 @@
 #SBATCH -q shared
 #SBATCH -A alice
 #SBATCH -J jetphox_submit
+#SBATCH --license=scratch
 #SBATCH -t 02:00:00
 
 RUNOPTIONS=""
@@ -14,5 +15,5 @@ do
 done
 
 
-time /global/u1/f/fjonas/pyphox/run_jetphox submitperlmutter $RUNOPTIONS
+time ${PSCRATCH}/pyphox/run_jetphox submitperlmutter $RUNOPTIONS
 

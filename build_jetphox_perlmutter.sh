@@ -6,6 +6,7 @@
 #SBATCH -J jetphox_build
 #SBATCH -A alice
 #SBATCH -t 00:30:00
+#SBATCH --license=scratch
 #SBATCH --image=fjonas/jetphoxenv:latest
 
 
@@ -17,9 +18,9 @@ do
 done
 echo "Running build_jetphox_perlmutter.sh with arguments: $RUNOPTIONS"
 
-export PERL5LIB="/global/u1/f/fjonas/pyphox/jptemplate/working:${PERL5LIB}"
+export PERL5LIB="${PSCRATCH}/pyphox/jptemplate/working:${PERL5LIB}"
 
-# run builld job
+# run build job
 
-time shifter -e PERL5LIB=$PERL5LIB --module=none /global/u1/f/fjonas/pyphox/run_jetphox build $RUNOPTIONS
+time shifter -e PERL5LIB=$PERL5LIB --module=none ${PSCRATCH}/pyphox/run_jetphox build $RUNOPTIONS
 

@@ -12,6 +12,7 @@
 # get current working directory
 CURRENTDIR=`pwd`
 
+export PERL5LIB="/global/u1/f/fjonas/pyphox/jptemplate/working:${PERL5LIB}"
 time $CURRENTDIR/$1
 
 # time ./$1

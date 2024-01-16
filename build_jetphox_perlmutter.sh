@@ -17,6 +17,7 @@ do
 done
 echo "Running build_jetphox_perlmutter.sh with arguments: $RUNOPTIONS"
 
+export PERL5LIB="/global/u1/f/fjonas/pyphox/jptemplate/working:${PERL5LIB}"
 # run builld job
 time /global/u1/f/fjonas/pyphox/run_jetphox build $RUNOPTIONS
 

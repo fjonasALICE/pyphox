@@ -13,7 +13,11 @@ cp -r $LOCALPATH $SCRATCHPATH
 cd $SCRATCHPATH
 
 
-RUNOPTIONS="--prefix Test_${DATE} --pdf1 nNNPDF30_nlo_as_0118_A208_Z82 --pdfmember1 0 --pdf2 nNNPDF30_nlo_as_0118_A208_Z82 --pdfmember2 0 --scaleis 1.0 --scalefs 1.0 --scalerenorm 1.0 --higherorder true --cme 5020 --maxrap 0.8 --minrap -0.8 --isoconeradius 0.4 --isoenergy $ISO --numberofevents $NEVENTS --randomseed $RANDOMX --directcalculation $BORNBOX --jetrapmin -5.8 --jetrapmax 5.8 --skipcopy false"
+# do PDF uncertainties for pp
+# loop over all PDF members
+for i in {0..101}
+do
+RUNOPTIONS="--prefix Test_${DATE} --pdf1 NNPDF40_nnlo_as_01180 --pdfmember1 ${i} --pdf2 NNPDF40_nnlo_as_01180 --pdfmember2 ${i} --scaleis 1.0 --scalefs 1.0 --scalerenorm 1.0 --higherorder true --cme 5020 --maxrap 0.8 --minrap -0.8 --isoconeradius 0.4 --isoenergy $ISO --numberofevents $NEVENTS --randomseed $RANDOMX --directcalculation $BORNBOX --jetrapmin -5.8 --jetrapmax 5.8 --skipcopy false"
 
 # build and submit job to slurm
 # dir
@@ -23,6 +27,7 @@ sbatch --dependency=afterok:${buildjobdirid##* } submit_jetphox_perlmutter.sh $R
 # frag
 buildjobfragid=$(sbatch --dependency=afterok:${buildjobdirid##* } build_jetphox_perlmutter.sh $RUNOPTIONS --process onef)
 sbatch --dependency=afterok:${buildjobfragid##* } submit_jetphox_perlmutter.sh $RUNOPTIONS --process onef
+done
 
 cd $LOCALPATH
 

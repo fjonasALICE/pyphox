@@ -5,7 +5,7 @@
 #SBATCH -q shared
 #SBATCH -J jetphox_run
 #SBATCH -A alice
-#SBATCH -t 12:00:00
+#SBATCH -t 5:00:00
 #SBATCH --license=scratch
 #SBATCH --image=fjonas/jetphoxenv:latest
 

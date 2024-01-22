@@ -9,7 +9,10 @@ LOCALPATH=${HOME}/pyphox/
 SCRATCHPATH=${PSCRATCH}/pyphox/
 
 # copy everything to scratch storage
-cp -r $LOCALPATH $SCRATCHPATH
+# cp -r $LOCALPATH $SCRATCHPATH
+# cd $SCRATCHPATH
+# copy localpath to scratchpath using rsync
+rsync -av --progress $LOCALPATH $SCRATCHPATH
 cd $SCRATCHPATH
 
 
@@ -33,7 +36,7 @@ sbatch --dependency=afterok:${buildjobdirid##* } submit_jetphox_perlmutter.sh $R
 
 # frag
 buildjobfragid=$(sbatch --dependency=afterok:${buildjobdirid##* } build_jetphox_perlmutter.sh $RUNOPTIONS --process onef --skipcopy true)
-sbatch --dependency=afterok:${buildjobfragid##* } submit_jetphox_perlmutter.sh $RUNOPTIONS --process onef -skipcopy true
+sbatch --dependency=afterok:${buildjobfragid##* } submit_jetphox_perlmutter.sh $RUNOPTIONS --process onef --skipcopy true
 done
 
 cd $LOCALPATH

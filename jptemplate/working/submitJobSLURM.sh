@@ -11,7 +11,9 @@ CURRENTDIR=`pwd`
 # docker run -it --rm -v /alf/data/flo/PyPhox/:/home/PyPhox jetphoxenv:latest $CURRENTDIR/$1
 #singularity
 echo $CURRENTDIR
-singularity exec -B /alf/data/flo/PyPhox/:/home/PyPhox --pwd /home/PyPhox docker://fjonas/jetphoxenv:latest $CURRENTDIR/$1
+# replce in CURRENTDIR /alf/data/flo/PyPhox/ with /home/PyPhox
+CURRENTDIR=${CURRENTDIR/\/alf\/data\/flo\/PyPhox\//\/home\/PyPhox\/}
+singularity exec -B /alf/data/flo/PyPhox/:/home/PyPhox --pwd /home/PyPhox /alf/data/flo/singularityimages/jetphoxenv.sif $CURRENTDIR/$1
 
 # time ./$1
 # exit $?

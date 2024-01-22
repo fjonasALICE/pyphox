@@ -8,7 +8,7 @@ import subprocess
 from datetime import datetime
 
 ptbins = [1.5, 3., 5., 8., 12., 17., 23., 31., 40., 52., 66., 82., 100., 120., 140., 160., 180., 200., 220.]
-
+name = "default"
 # funcion that creates pthard bin folders (if they don't exist) and copies all needed files for building
 def createpthardbins():
     basedir = os.getcwd()
@@ -17,10 +17,10 @@ def createpthardbins():
     for i in range(len(ptbins)-1):
         # mkdir -p jp${i}
         print("Creating jp"+str(i)+" folder")
-        os.makedirs('jp'+str(i), exist_ok=True)
+        os.makedirs(str(name)+'_jp'+str(i), exist_ok=True)
         # copy all files (wildcard) from jptemplate folder to jp${i}
         print("Copying files from jptemplate to jp"+str(i))
-        subprocess.run(['cp', '-a', basedir+'/jptemplate/.', 'jp'+str(i)+'/'])
+        subprocess.run(['cp', '-a', basedir+'/jptemplate/.', str(name)+'_jp'+str(i)+'/'])
 
 
 
@@ -67,11 +67,6 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    # create pthard bin folders
-    if args.skipcopy == "false":
-        print("Creating pthard bin folders")
-        createpthardbins()
-        print("Created pthard bin folders")
 
     # load environment
 
@@ -136,12 +131,19 @@ if __name__ == "__main__":
     # make pdf names shorter
     name = name.replace('nNNPDF30_nlo_as_0118_A208_Z82', 'nNNPDF30')
 
+        # create pthard bin folders
+    if args.skipcopy == "false":
+        print("Creating pthard bin folders")
+        createpthardbins()
+        print("Created pthard bin folders")
+
     # build name of outputfile
     basedir = os.getcwd()
+
     # loop over pthard bins
     for i in range(len(ptbins)-1):
         # enter pthard bin folder
-        os.chdir('jp'+str(i)+'/working/')
+        os.chdir(str(name)+'_jp'+str(i)+'/working/')
         
         # copy files from jptemplate folder
         shutil.copyfile(basedir+'/jptemplate/working/Makefile', 'Makefile')
@@ -242,10 +244,10 @@ if __name__ == "__main__":
     subprocess.run(['touch', 'merge_'+name+'.sh'])
     if args.process == "dir":
         with open('merge_'+name+'.sh', 'w') as f:
-            f.write('hadd -k '+name+'.root jp{0..'+str(len(ptbins)-1)+'}/'+name+'/ggd'+name+'.root\n')
+            f.write('hadd -k '+name+'.root '+name+'_jp{0..'+str(len(ptbins)-1)+'}/'+name+'/ggd'+name+'.root\n')
     if args.process == "onef":
         with open('merge_'+name+'.sh', 'w') as f:
-            f.write('hadd -k '+name+'.root jp{0..'+str(len(ptbins)-1)+'}/'+name+'/ggo'+name+'.root\n')
+            f.write('hadd -k '+name+'.root ' +name+ '_jp{0..'+str(len(ptbins)-1)+'}/'+name+'/ggo'+name+'.root\n')
 
 
 

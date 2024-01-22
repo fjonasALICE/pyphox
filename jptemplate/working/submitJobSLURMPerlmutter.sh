@@ -3,9 +3,9 @@
 #SBATCH -c 1
 #SBATCH -C cpu
 #SBATCH -q shared
-#SBATCH -J jetphox_run
+#SBATCH -J run
 #SBATCH -A alice
-#SBATCH -t 5:00:00
+#SBATCH -t 05:00:00
 #SBATCH --license=scratch
 #SBATCH --image=fjonas/jetphoxenv:latest
 

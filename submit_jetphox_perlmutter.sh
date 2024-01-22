@@ -4,7 +4,7 @@
 #SBATCH -C cpu
 #SBATCH -q shared
 #SBATCH -A alice
-#SBATCH -J jetphox_submit
+#SBATCH -J submit
 #SBATCH --license=scratch
 #SBATCH -t 02:00:00
 
